@@ -18,8 +18,10 @@ pipeline{
         }
         stage('API Test'){
             steps{
-                git credentialsId: 'github_login', url: 'https://github.com/brunosilva29/tasks-api-test'
-                bat 'mvn clean test'
+                dir('api-test') {
+                    git credentialsId: 'github_login', url: 'https://github.com/brunosilva29/tasks-api-test'
+                    bat 'mvn clean test'
+                }
             }
         }
     }
